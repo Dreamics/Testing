@@ -5,8 +5,7 @@ import Animated, { useSharedValue, useAnimatedStyle, withTiming } from 'react-na
 import * as ImagePicker from 'expo-image-picker';
 import { KeyboardStickyView, KeyboardAvoidingView } from 'react-native-keyboard-controller';
 import * as FileSystem from 'expo-file-system';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+
 import { Colors } from '@/constants/Colors';
 import { supabase } from '../utils/subabase';
 import { useRouter, useNavigation } from 'expo-router';  
@@ -167,12 +166,12 @@ const SignupScreen = () => {
       style={styles.content}
     >
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-        <ThemedView style={styles.container}>
-          <ThemedView style={styles.storiesProgressContainer}>
+        <View style={styles.container}>
+          <View style={styles.storiesProgressContainer}>
             {Array.from({ length: totalPages }, (_, index) => (
               <ProgressSegment key={index} index={index} pageProgress={pageProgress} />
             ))}
-          </ThemedView>
+          </View>
 
           <PagerView
             style={styles.pagerView}
@@ -185,7 +184,7 @@ const SignupScreen = () => {
             {/* Page 1: Mobile Number */}
 
             <View key="1" style={styles.page}>
-              <ThemedText style={styles.title}>Your Mobile Number</ThemedText>
+              <Text style={styles.title}>Your Mobile Number</Text>
               <TextInput
                 style={[styles.input, { backgroundColor: colors.inputBg, borderColor: colors.border, color: colors.text }]}
                 placeholderTextColor={colors.icon}
@@ -199,7 +198,7 @@ const SignupScreen = () => {
 
             {/* Page 2: Name */}
             <View key="2" style={styles.page}>
-              <ThemedText style={styles.title}>What's your name?</ThemedText>
+              <Text style={styles.title}>What's your name?</Text>
               <TextInput
                 style={[styles.input, { backgroundColor: colors.inputBg, borderColor: colors.border, color: colors.text }]}
                 placeholderTextColor={colors.icon}
@@ -211,7 +210,7 @@ const SignupScreen = () => {
 
             {/* Page 3: Username */}
             <View key="3" style={styles.page}>
-              <ThemedText style={styles.title}>Choose a Username</ThemedText>
+              <Text style={styles.title}>Choose a Username</Text>
               <TextInput
                 style={[styles.input, { backgroundColor: colors.inputBg, borderColor: colors.border, color: colors.text }]}
                 placeholderTextColor={colors.icon}
@@ -223,13 +222,13 @@ const SignupScreen = () => {
 
             {/* Page 4: Profile Photo (Optional) */}
             <View key="4" style={styles.page}>
-              <ThemedText style={styles.title}>Upload a Profile Photo (Optional)</ThemedText>
+              <Text style={styles.title}>Upload a Profile Photo (Optional)</Text>
               <TouchableOpacity
                 style={[styles.uploadButton, { backgroundColor: colors.tint + '20' }]}
                 onPress={pickImage}
                 disabled={loading}
               >
-                <ThemedText style={{ color: colors.tint }}>Choose Photo</ThemedText>
+                <Text style={{ color: colors.tint }}>Choose Photo</Text>
               </TouchableOpacity>
               {profilePhoto && (
                 <Image source={{ uri: profilePhoto }} style={[styles.image, { borderColor: colors.border }]} />
@@ -245,7 +244,7 @@ const SignupScreen = () => {
               colors={colors}
               loading={loading}
             />
-        </ThemedView>
+        </View>
     </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
   
@@ -281,7 +280,7 @@ const AnimatedButton = ({ title, onPress, disabled, colors, loading }: any) => {
         {loading ? (
           <ActivityIndicator color={colors.background} />
         ) : (
-          <ThemedText style={[styles.buttonText, { color: colors.background }]}>{title}</ThemedText>
+          <Text style={[styles.buttonText, { color: colors.background }]}>{title}</Text>
         )}
       </TouchableOpacity>
     </Animated.View>
@@ -386,4 +385,3 @@ const styles = StyleSheet.create({
 });
 
 export default SignupScreen;
-
